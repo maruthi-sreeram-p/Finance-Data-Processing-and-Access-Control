@@ -1,0 +1,62 @@
+.region {
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  z-index: var(--z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  /* The region spans the corner but must not block clicks on what is underneath;
+     individual toasts re-enable pointer events for their dismiss button. */
+  pointer-events: none;
+  max-width: min(400px, calc(100vw - var(--space-8)));
+}
+
+.toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-raised);
+  border: 1px solid var(--border-subtle);
+  border-left-width: 3px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  font-size: var(--text-sm);
+  animation: slide var(--duration-base) var(--ease-out);
+}
+
+.success { border-left-color: var(--positive-500); }
+.error   { border-left-color: var(--negative-500); }
+.info    { border-left-color: var(--accent-solid); }
+
+.icon { flex-shrink: 0; margin-top: 1px; }
+.success .icon { color: var(--positive-text); }
+.error .icon   { color: var(--negative-text); }
+.info .icon    { color: var(--text-accent); }
+
+.message { flex: 1; min-width: 0; color: var(--text-primary); overflow-wrap: anywhere; }
+
+.dismiss {
+  flex-shrink: 0;
+  color: var(--text-tertiary);
+  padding: var(--space-1);
+  margin: calc(var(--space-1) * -1);
+  border-radius: var(--radius-sm);
+}
+
+.dismiss:hover { color: var(--text-primary); background: var(--bg-hover); }
+
+@keyframes slide { from { opacity: 0; transform: translateX(16px); } }
+
+@media (prefers-reduced-motion: reduce) { .toast { animation: none; } }
+
+@media (max-width: 640px) {
+  .region {
+    left: var(--space-4);
+    right: var(--space-4);
+    bottom: var(--space-4);
+    max-width: none;
+  }
+}

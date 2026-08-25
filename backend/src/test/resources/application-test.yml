@@ -1,0 +1,29 @@
+# Test profile: the suite runs against in-memory H2 in MySQL-compatibility mode so
+# `./mvnw test` needs no external infrastructure. The Flyway migrations are executed
+# here too, which keeps the schema and the JPA mappings honest -- `ddl-auto: validate`
+# fails the build if an entity and its migration ever drift apart.
+spring:
+  datasource:
+    url: jdbc:h2:mem:fintrack;MODE=MySQL;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE;DB_CLOSE_DELAY=-1
+    username: sa
+    password: ""
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+    clean-disabled: false
+
+fintrack:
+  jwt:
+    # Test-only fixture, not a credential. Production supplies JWT_SECRET via the
+    # environment; see .env.example.
+    secret: dGVzdC1vbmx5LXNlY3JldC1mb3ItZmludHJhY2stanVuaXQtc3VpdGUtMjU2LWJpdHM=
+    expiration-ms: 3600000
+    issuer: fintrack-test
+
+logging:
+  level:
+    com.fintrack: DEBUG
+    org.springframework.security: DEBUG

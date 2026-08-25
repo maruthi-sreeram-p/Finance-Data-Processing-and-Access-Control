@@ -1,0 +1,133 @@
+.page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  /* Form on the left, brand panel on the right. Equal columns rather than a
+     narrow form on a wide field, which reads as an afterthought. */
+  grid-template-columns: 1fr 1fr;
+}
+
+.formSide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--space-6);
+  background: var(--bg-canvas);
+}
+
+.formInner {
+  width: 100%;
+  /* ~55ch of form is the comfortable maximum; wider and the eye loses the
+     label-to-input relationship. */
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.brandRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--text-primary);
+  text-decoration: none;
+  margin-bottom: var(--space-2);
+}
+
+.brandRow:hover { text-decoration: none; }
+
+.brandMark {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--accent-500), var(--accent-700));
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+}
+
+.brandName { font-size: var(--text-lg); font-weight: var(--weight-bold); letter-spacing: -0.02em; }
+
+.heading { display: flex; flex-direction: column; gap: var(--space-2); }
+.title { font-size: var(--text-2xl); }
+.subtitle { color: var(--text-secondary); font-size: var(--text-base); }
+
+.form { display: flex; flex-direction: column; gap: var(--space-4); }
+
+.footer {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* --- Brand panel --------------------------------------------------------- */
+.brandSide {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-8);
+  padding: var(--space-16) var(--space-12);
+  background: linear-gradient(150deg, var(--accent-800), var(--accent-900) 55%, #0b1f1c);
+  color: #ffffff;
+  overflow: hidden;
+}
+
+/* A faint grid, suggesting a ledger without literal decoration. */
+.brandSide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse at 30% 30%, #000 20%, transparent 75%);
+}
+
+.brandContent { position: relative; display: flex; flex-direction: column; gap: var(--space-6); }
+
+.brandHeadline {
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  max-width: 18ch;
+}
+
+.brandCopy {
+  font-size: var(--text-md);
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 44ch;
+  line-height: var(--leading-normal);
+}
+
+.brandList { display: flex; flex-direction: column; gap: var(--space-4); }
+
+.brandItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: var(--text-base);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.brandItemIcon {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.12);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.brandItemText { display: flex; flex-direction: column; gap: 2px; }
+.brandItemTitle { font-weight: var(--weight-semibold); }
+.brandItemDesc { font-size: var(--text-sm); color: rgba(255, 255, 255, 0.65); }
+
+/* Below 900px the brand panel is dropped rather than stacked: on a phone it
+   would push the form itself below the fold. */
+@media (max-width: 900px) {
+  .page { grid-template-columns: 1fr; }
+  .brandSide { display: none; }
+}

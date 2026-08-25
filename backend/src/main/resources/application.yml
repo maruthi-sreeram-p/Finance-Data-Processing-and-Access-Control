@@ -1,0 +1,79 @@
+spring:
+  application:
+    name: fintrack
+
+  # Local secrets live in an untracked .env at the project root (see .env.example).
+  # "optional:" means the app still starts when the file is absent, e.g. in CI or in
+  # a container where real environment variables are supplied instead.
+  config:
+    import: optional:file:.env[.properties]
+
+  profiles:
+    default: dev
+
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      write-dates-as-timestamps: false
+
+  jpa:
+    # Disabled deliberately: lazy associations must be resolved inside the service
+    # layer, not rendered lazily during view serialization.
+    open-in-view: false
+    hibernate:
+      # The schema is owned by Flyway. Hibernate only checks that the mapping and
+      # the migrated schema agree; it never alters tables.
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+server:
+  port: ${SERVER_PORT:8080}
+  error:
+    # Never leak internals to clients; GlobalExceptionHandler owns error responses.
+    include-stacktrace: never
+    include-message: never
+    include-binding-errors: never
+
+fintrack:
+  cors:
+    # Comma-separated list of origins allowed to call the API from a browser.
+    # Never a wildcard: it cannot be combined with credentials, and one added for
+    # convenience in development tends to survive into production unnoticed.
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}
+  jwt:
+    secret: ${JWT_SECRET}
+    expiration-ms: ${JWT_EXPIRATION_MS:3600000}
+    issuer: fintrack
+
+management:
+  endpoints:
+    web:
+      exposure:
+        # Only health is exposed. The other actuator endpoints reveal configuration,
+        # environment variables and heap detail, and none of them is needed here --
+        # this exists for the container health check.
+        include: health
+  endpoint:
+    health:
+      # Component detail (database reachability and so on) would tell an unauthenticated
+      # caller about the internals; the aggregate UP/DOWN is all a probe needs.
+      show-details: never
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+    tags-sorter: alpha
+
+logging:
+  level:
+    com.fintrack: ${LOG_LEVEL_APP:INFO}

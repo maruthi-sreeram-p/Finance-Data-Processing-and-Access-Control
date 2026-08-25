@@ -1,0 +1,208 @@
+/* ===========================================================================
+   FinTrack design tokens.
+
+   Every colour, space and type step in the application resolves to something
+   declared here. Components never hardcode a hex value, which is what makes the
+   dark theme a matter of redefining ~20 variables rather than auditing every
+   stylesheet.
+
+   The palette is deliberately restrained: one accent, one positive, one
+   negative, and a wide neutral ramp. A finance application earns trust by
+   looking calm, and colour is reserved for the two things that genuinely carry
+   meaning -- money in and money out.
+   =========================================================================== */
+
+:root {
+  /* --- Neutral ramp ----------------------------------------------------- */
+  --slate-50: #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+  --slate-950: #020617;
+
+  /* --- Accent: deep teal ------------------------------------------------
+     Chosen over the default SaaS blue-violet to read as considered rather
+     than templated, and because it stays distinct from the green/red that
+     carry financial meaning. */
+  --accent-50: #eefbf7;
+  --accent-100: #d5f5eb;
+  --accent-200: #aeead9;
+  --accent-300: #79d8c1;
+  --accent-400: #43bda3;
+  --accent-500: #1fa189;
+  --accent-600: #14806f;
+  --accent-700: #14675b;
+  --accent-800: #14524a;
+  --accent-900: #14453e;
+
+  /* --- Semantic: money -------------------------------------------------- */
+  --positive-500: #16a34a;
+  --positive-600: #15803d;
+  --positive-bg: #dcfce7;
+  --negative-500: #dc2626;
+  --negative-600: #b91c1c;
+  --negative-bg: #fee2e2;
+  --warning-500: #d97706;
+  --warning-bg: #fef3c7;
+
+  /* --- Typography -------------------------------------------------------
+     System font stack: zero network cost, and every platform's own UI face is
+     already optimised for dense interface text. */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  /* Tabular figures matter here: without them, digits have varying widths and a
+     column of amounts fails to line up on the decimal point. */
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono",
+    Menlo, Consolas, monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.9375rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+  --text-4xl: 3rem;
+
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  --leading-tight: 1.2;
+  --leading-snug: 1.4;
+  --leading-normal: 1.6;
+
+  /* --- Spacing: 4px scale ----------------------------------------------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+
+  /* --- Radii ------------------------------------------------------------ */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* --- Elevation --------------------------------------------------------
+     Shadows are layered and low-opacity. One hard drop shadow reads as a 2010s
+     card; two soft offsets read as depth. */
+  --shadow-xs: 0 1px 2px rgba(2, 6, 23, 0.05);
+  --shadow-sm: 0 1px 3px rgba(2, 6, 23, 0.07), 0 1px 2px rgba(2, 6, 23, 0.04);
+  --shadow-md: 0 4px 12px rgba(2, 6, 23, 0.07), 0 2px 4px rgba(2, 6, 23, 0.04);
+  --shadow-lg: 0 12px 28px rgba(2, 6, 23, 0.10), 0 4px 8px rgba(2, 6, 23, 0.05);
+
+  /* --- Motion -----------------------------------------------------------
+     Short and eased. Anything longer than ~200ms on an interface control feels
+     like lag rather than polish. */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 120ms;
+  --duration-base: 180ms;
+
+  --layout-sidebar: 248px;
+  --layout-topbar: 64px;
+  --layout-max: 1440px;
+
+  --z-sticky: 100;
+  --z-drawer: 200;
+  --z-overlay: 300;
+  --z-toast: 400;
+}
+
+/* --- Light theme (default) ---------------------------------------------- */
+:root,
+[data-theme='light'] {
+  --bg-canvas: var(--slate-50);
+  --bg-surface: #ffffff;
+  --bg-raised: #ffffff;
+  --bg-sunken: var(--slate-100);
+  --bg-hover: var(--slate-100);
+  --bg-active: var(--slate-200);
+  --bg-inverse: var(--slate-900);
+
+  --text-primary: var(--slate-900);
+  --text-secondary: var(--slate-600);
+  --text-tertiary: var(--slate-500);
+  --text-inverse: #ffffff;
+  --text-accent: var(--accent-700);
+
+  --border-subtle: var(--slate-200);
+  --border-default: var(--slate-300);
+  --border-strong: var(--slate-400);
+
+  --accent-solid: var(--accent-600);
+  --accent-solid-hover: var(--accent-700);
+  --accent-soft: var(--accent-50);
+  --accent-text-on-solid: #ffffff;
+
+  --positive-text: var(--positive-600);
+  --positive-surface: var(--positive-bg);
+  --negative-text: var(--negative-600);
+  --negative-surface: var(--negative-bg);
+  --warning-text: var(--warning-500);
+  --warning-surface: var(--warning-bg);
+
+  --focus-ring: var(--accent-500);
+  --overlay-scrim: rgba(2, 6, 23, 0.45);
+}
+
+/* --- Dark theme ---------------------------------------------------------
+   Not an inversion. Surfaces lift as they come forward (canvas darkest, raised
+   lightest) because in dark mode elevation reads through lightness, not shadow
+   -- shadows are nearly invisible against a dark ground. Accent and semantic
+   colours shift lighter to hold contrast against the darker background. */
+[data-theme='dark'] {
+  --bg-canvas: #0a0f1a;
+  --bg-surface: #111827;
+  --bg-raised: #172033;
+  --bg-sunken: #0d1320;
+  --bg-hover: #1c2739;
+  --bg-active: #243147;
+  --bg-inverse: var(--slate-100);
+
+  --text-primary: #e8edf5;
+  --text-secondary: #97a3b6;
+  --text-tertiary: #6f7d92;
+  --text-inverse: var(--slate-900);
+  --text-accent: var(--accent-300);
+
+  --border-subtle: #1e2a3d;
+  --border-default: #2a3850;
+  --border-strong: #3b4a66;
+
+  --accent-solid: var(--accent-500);
+  --accent-solid-hover: var(--accent-400);
+  --accent-soft: rgba(31, 161, 137, 0.12);
+  --accent-text-on-solid: #04120f;
+
+  --positive-text: #4ade80;
+  --positive-surface: rgba(74, 222, 128, 0.13);
+  --negative-text: #f87171;
+  --negative-surface: rgba(248, 113, 113, 0.13);
+  --warning-text: #fbbf24;
+  --warning-surface: rgba(251, 191, 36, 0.13);
+
+  --focus-ring: var(--accent-400);
+  --overlay-scrim: rgba(2, 6, 23, 0.7);
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.45), 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.55), 0 4px 8px rgba(0, 0, 0, 0.35);
+}

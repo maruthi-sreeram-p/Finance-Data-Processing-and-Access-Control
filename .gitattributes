@@ -1,0 +1,28 @@
+# Normalize text files to LF in the repository; check out with native endings.
+* text=auto
+
+# The Maven wrapper shell script is executed by /bin/sh on Linux and macOS.
+# CRLF endings would make it fail with "bad interpreter", so pin it to LF.
+mvnw       text eol=lf
+*.sh       text eol=lf
+
+# Windows-only scripts must keep CRLF.
+mvnw.cmd   text eol=crlf
+*.bat      text eol=crlf
+*.cmd      text eol=crlf
+
+# Explicit text types (keeps diffs readable and endings consistent).
+*.java     text eol=lf
+*.xml      text eol=lf
+*.yml      text eol=lf
+*.yaml     text eol=lf
+*.sql      text eol=lf
+*.md       text eol=lf
+*.properties text eol=lf
+
+# Binary: never normalize, never diff as text.
+*.jar      binary
+*.png      binary
+*.jpg      binary
+*.gif      binary
+*.ico      binary

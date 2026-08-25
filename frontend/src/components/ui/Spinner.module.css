@@ -1,0 +1,27 @@
+.spinner {
+  display: inline-block;
+  border-radius: 50%;
+  border-style: solid;
+  /* One transparent quarter is what makes the rotation visible. */
+  border-color: currentColor currentColor currentColor transparent;
+  animation: spin 640ms linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-12) var(--space-4);
+  color: var(--text-tertiary);
+  gap: var(--space-3);
+  flex-direction: column;
+}
+
+.label {
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+}

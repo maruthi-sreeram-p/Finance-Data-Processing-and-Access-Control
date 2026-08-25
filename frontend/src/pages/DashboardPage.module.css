@@ -1,0 +1,150 @@
+.page { display: flex; flex-direction: column; gap: var(--space-6); }
+
+.pageHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.greeting { display: flex; flex-direction: column; gap: var(--space-1); }
+.greetingTitle { font-size: var(--text-xl); }
+.greetingCopy { color: var(--text-secondary); font-size: var(--text-sm); }
+
+/* --- Stat cards ---------------------------------------------------------- */
+.stats {
+  display: grid;
+  /* auto-fit with a minimum: four across on desktop, two on tablet, one on a
+     phone, with no breakpoint arithmetic. */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+}
+
+.stat {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+/* A coloured edge encodes the card's meaning without tinting the whole surface,
+   which would make four cards shout at once. */
+.stat::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--border-default);
+}
+
+.statIncome::before { background: var(--positive-500); }
+.statExpense::before { background: var(--negative-500); }
+.statBalance::before { background: var(--accent-solid); }
+.statCount::before { background: var(--slate-400); }
+
+.statTop { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+
+.statLabel {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  font-weight: var(--weight-medium);
+}
+
+.statIcon {
+  width: 34px; height: 34px; border-radius: var(--radius-md);
+  display: grid; place-items: center; flex-shrink: 0;
+}
+
+.statIconIncome { background: var(--positive-surface); color: var(--positive-text); }
+.statIconExpense { background: var(--negative-surface); color: var(--negative-text); }
+.statIconBalance { background: var(--accent-soft); color: var(--text-accent); }
+.statIconCount { background: var(--bg-sunken); color: var(--text-secondary); }
+
+.statValue {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.statPositive { color: var(--positive-text); }
+.statNegative { color: var(--negative-text); }
+
+.statHint { font-size: var(--text-xs); color: var(--text-tertiary); }
+
+/* --- Grid ---------------------------------------------------------------- */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.gridFull { grid-column: 1 / -1; }
+
+/* --- Recent list --------------------------------------------------------- */
+.recentList { display: flex; flex-direction: column; }
+
+.recentRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-6);
+  border-bottom: 1px solid var(--border-subtle);
+  text-decoration: none;
+  color: inherit;
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.recentRow:last-child { border-bottom: none; }
+.recentRow:hover { background: var(--bg-hover); text-decoration: none; }
+
+.recentIcon {
+  width: 36px; height: 36px; border-radius: var(--radius-md);
+  display: grid; place-items: center; flex-shrink: 0;
+}
+
+.recentIconIncome { background: var(--positive-surface); color: var(--positive-text); }
+.recentIconExpense { background: var(--negative-surface); color: var(--negative-text); }
+
+.recentBody { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+
+.recentTitle {
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recentMeta { font-size: var(--text-xs); color: var(--text-tertiary); display: flex; gap: var(--space-2); flex-wrap: wrap; }
+
+.recentAmount {
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.viewAll { font-size: var(--text-sm); }
+
+.skeletonStack { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-6); }
+.skeletonRow { display: flex; align-items: center; gap: var(--space-4); }
+
+@media (max-width: 1080px) {
+  .grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .recentRow { padding: var(--space-3) var(--space-4); gap: var(--space-3); }
+  .statValue { font-size: var(--text-xl); }
+}

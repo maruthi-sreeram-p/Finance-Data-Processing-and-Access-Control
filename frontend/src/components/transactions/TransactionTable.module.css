@@ -1,0 +1,110 @@
+.tableWrap {
+  width: 100%;
+  /* The table scrolls inside this container rather than pushing the page wide.
+     Without it, a narrow viewport gets a horizontally scrolling *page*, which
+     breaks the sticky sidebar and the header alignment. */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table { width: 100%; min-width: 720px; border-collapse: collapse; }
+
+.table thead th {
+  text-align: left;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-tertiary);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+  white-space: nowrap;
+  background: var(--bg-sunken);
+}
+
+.table tbody td {
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: var(--text-sm);
+  vertical-align: middle;
+}
+
+.table tbody tr:last-child td { border-bottom: none; }
+.table tbody tr { transition: background-color var(--duration-fast) var(--ease-out); }
+.table tbody tr:hover { background: var(--bg-hover); }
+
+.sortButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: inherit;
+  font: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+}
+
+.sortButton:hover { color: var(--text-primary); }
+.sortActive { color: var(--text-accent); }
+
+.sortIcon { opacity: 0.4; transition: opacity var(--duration-fast) var(--ease-out); }
+.sortActive .sortIcon { opacity: 1; }
+
+.description {
+  font-weight: var(--weight-medium);
+  color: var(--text-primary);
+  max-width: 280px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.noDescription { color: var(--text-tertiary); font-style: italic; font-weight: var(--weight-normal); }
+
+.amount {
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.income { color: var(--positive-text); }
+.expense { color: var(--negative-text); }
+
+.date { color: var(--text-secondary); white-space: nowrap; }
+
+.actions { display: flex; gap: var(--space-1); justify-content: flex-end; }
+
+.actionButton {
+  width: 32px; height: 32px;
+  display: grid; place-items: center;
+  border-radius: var(--radius-sm);
+  color: var(--text-tertiary);
+}
+
+.actionButton:hover { background: var(--bg-active); color: var(--text-primary); }
+.actionDanger:hover { background: var(--negative-surface); color: var(--negative-text); }
+
+/* --- Card list for narrow screens ---------------------------------------- */
+.cards { display: none; flex-direction: column; }
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.card:last-child { border-bottom: none; }
+
+.cardTop { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-3); }
+.cardTitle { font-weight: var(--weight-medium); overflow-wrap: anywhere; }
+.cardMeta { display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; font-size: var(--text-xs); color: var(--text-tertiary); }
+.cardBottom { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+
+/* Below 820px the table becomes a card list. A table with six columns at 375px
+   is unreadable however it is scrolled, and hiding columns loses information. */
+@media (max-width: 820px) {
+  .tableWrap { display: none; }
+  .cards { display: flex; }
+}

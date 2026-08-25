@@ -1,0 +1,43 @@
+# Keep the build context small and keep secrets out of the image entirely.
+
+# Secrets -- must never reach a layer, even a discarded builder one.
+.env
+.env.*
+!.env.example
+
+# Build output: the image builds its own, and copying a host-built target/ in
+# would invalidate the dependency cache layer on every local compile.
+target/
+
+# Version control and CI
+.git/
+.github/
+.gitignore
+.gitattributes
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.settings/
+.classpath
+.project
+
+# Docker's own files
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# Docs
+README.md
+*.md
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/

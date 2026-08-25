@@ -1,0 +1,65 @@
+.wrap { width: 100%; }
+
+.svg { width: 100%; height: auto; display: block; overflow: visible; }
+
+/* --- Legend -------------------------------------------------------------- */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  justify-content: center;
+  margin-top: var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.legendItem { display: flex; align-items: center; gap: var(--space-2); }
+
+.legendSwatch { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+
+/* --- Axis ---------------------------------------------------------------- */
+.axisLabel { font-size: 11px; fill: var(--text-tertiary); }
+.gridLine { stroke: var(--border-subtle); stroke-width: 1; }
+.axisLine { stroke: var(--border-default); stroke-width: 1; }
+
+/* --- Bars ---------------------------------------------------------------- */
+.barIncome { fill: var(--positive-500); }
+.barExpense { fill: var(--negative-500); }
+
+.bar { transition: opacity var(--duration-fast) var(--ease-out); }
+.bar:hover { opacity: 0.8; }
+
+/* --- Donut --------------------------------------------------------------- */
+.donutWrap { display: flex; align-items: center; justify-content: center; gap: var(--space-8); flex-wrap: wrap; }
+.donutSvg { flex-shrink: 0; }
+.donutCenterLabel { font-size: 11px; fill: var(--text-tertiary); }
+.donutCenterValue { font-size: 15px; font-weight: 600; fill: var(--text-primary); }
+
+.donutLegend { display: flex; flex-direction: column; gap: var(--space-3); min-width: 180px; }
+.donutLegendItem { display: flex; align-items: center; gap: var(--space-3); font-size: var(--text-sm); }
+.donutLegendText { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.donutLegendLabel { color: var(--text-primary); font-weight: var(--weight-medium); }
+.donutLegendValue { color: var(--text-tertiary); font-size: var(--text-xs); }
+
+/* --- Category bars ------------------------------------------------------- */
+.catList { display: flex; flex-direction: column; gap: var(--space-4); }
+
+.catRow { display: flex; flex-direction: column; gap: var(--space-2); }
+
+.catHead { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); }
+.catName { font-size: var(--text-sm); font-weight: var(--weight-medium); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.catMeta { display: flex; align-items: baseline; gap: var(--space-3); flex-shrink: 0; }
+.catAmount { font-size: var(--text-sm); font-weight: var(--weight-semibold); font-variant-numeric: tabular-nums; }
+.catPercent { font-size: var(--text-xs); color: var(--text-tertiary); font-variant-numeric: tabular-nums; min-width: 46px; text-align: right; }
+
+.catTrack { height: 8px; border-radius: var(--radius-full); background: var(--bg-sunken); overflow: hidden; }
+.catFill { height: 100%; border-radius: var(--radius-full); transition: width var(--duration-base) var(--ease-out); }
+.catFillExpense { background: var(--negative-500); }
+.catFillIncome { background: var(--positive-500); }
+
+@media (prefers-reduced-motion: reduce) { .catFill { transition: none; } }
+
+@media (max-width: 560px) {
+  .donutWrap { gap: var(--space-5); }
+  .donutLegend { min-width: 0; width: 100%; }
+}

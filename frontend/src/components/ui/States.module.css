@@ -1,0 +1,78 @@
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-3);
+  padding: var(--space-16) var(--space-6);
+}
+
+.icon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-full);
+  background: var(--bg-sunken);
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-1);
+}
+
+.title {
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+}
+
+.description {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  max-width: 42ch;
+}
+
+.action { margin-top: var(--space-3); }
+
+.error {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--negative-surface);
+  border: 1px solid color-mix(in srgb, var(--negative-500) 25%, transparent);
+  border-radius: var(--radius-md);
+  color: var(--negative-text);
+  align-items: flex-start;
+}
+
+.errorBody { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; }
+.errorText { font-size: var(--text-sm); }
+.errorIcon { flex-shrink: 0; margin-top: 2px; }
+
+.inlineError {
+  font-size: var(--text-sm);
+  color: var(--negative-text);
+}
+
+/* --- Skeletons ---
+   Shaped like the content they replace so the layout does not shift when real
+   data arrives -- a generic spinner then a reflow is more jarring than a
+   placeholder that is already the right size. */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-sunken) 25%,
+    var(--bg-hover) 37%,
+    var(--bg-sunken) 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes shimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton { animation: none; }
+}

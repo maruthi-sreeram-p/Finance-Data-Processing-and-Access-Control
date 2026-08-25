@@ -1,0 +1,58 @@
+# --- Secrets --------------------------------------------------------------
+.env
+.env.*
+!.env.example
+
+# --- Maven ----------------------------------------------------------------
+target/
+backend/target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# --- IDE: IntelliJ IDEA ---------------------------------------------------
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# --- IDE: Eclipse / STS ---------------------------------------------------
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# --- IDE: VS Code ---------------------------------------------------------
+.vscode/
+
+# --- IDE: NetBeans --------------------------------------------------------
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+# --- OS -------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+
+# --- Local development database -------------------------------------------
+# H2 file store used by the `local` Spring profile. Contains throwaway dev data.
+backend/data/
+
+# --- Node / frontend ------------------------------------------------------
+node_modules/
+frontend/dist/
+frontend/coverage/
+# TypeScript incremental build cache -- regenerated on every build.
+*.tsbuildinfo
+npm-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# --- Logs -----------------------------------------------------------------
+*.log
+logs/
